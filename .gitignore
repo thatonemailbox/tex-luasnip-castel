@@ -1,0 +1,8 @@
+# https://stackoverflow.com/a/987162/18031673
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!castel.lua
+!README.md
