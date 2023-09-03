@@ -572,32 +572,32 @@ return {
 
 	s({trig="->", dscr="to", wordTrig=true, snippetType="autosnippet"},
 	    { t("\\to") },
-	    { context=math }
+	    { condition=math }
 	),
 
 	s({trig="<->", dscr="leftrightarrow", wordTrig=true, snippetType="autosnippet"},
 	    { t("\\leftrightarrow") },
-	    { context=math }
+	    { condition=math }
 	),
 
 	s({trig="!>", dscr="mapsto", wordTrig=true, snippetType="autosnippet"},
 	    { t("\\mapsto") },
-	    { context=math }
+	    { condition=math }
 	),
 
 	s({trig="invs", dscr="inverse", wordTrig=true, snippetType="autosnippet"},
 	    { t("^{-1}") },
-	    { context=math }
+	    { condition=math }
 	),
 
 	s({trig="compl", dscr="compliment", wordTrig=true, snippetType="autosnippet"},
 	    { t("^{c}") },
-	    { context=math }
+	    { condition=math }
 	),
 
 	s({trig="\\\\\\", dscr="setminus", wordTrig=true, snippetType="autosnippet"},
 	    { t("\\setminus") },
-	    { context=math }
+	    { condition=math }
 	),
 
 	s({trig=">>", dscr=">>", wordTrig=true, snippetType="autosnippet"},
@@ -612,9 +612,9 @@ return {
 	    { t("\\sim") }
 	),
 
-	s({trig="set", dscr="set", wordTrig=false, snippetType="autosnippet"},
+	s({trig="set", dscr="set", wordTrig=true, snippetType="autosnippet"},
 	    fmta("\\{<>\\} <>", { i(1), i(0) }),
-	    { context=math }
+	    { condition=math, show_condition=math }
 	),
 
 	s({trig="||", dscr="mid", wordTrig=false, snippetType="autosnippet"},
@@ -623,7 +623,7 @@ return {
 
 	s({trig="cc", dscr="subset", wordTrig=false, snippetType="autosnippet"},
 	    { t("\\subset") },
-	    { context=math }
+	    { condition=math }
 	),
 
 	s({trig="notin", dscr="not in", wordTrig=false, snippetType="autosnippet"},
