@@ -1,1 +1,5 @@
-/test.tex
+*
+
+!.gitignore
+!castel.lua
+!README.md
