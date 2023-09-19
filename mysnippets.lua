@@ -1,5 +1,6 @@
 local ls = require("luasnip")
 local s = ls.snippet
+local sn = ls.snippet_node
 local t = ls.text_node
 local i = ls.insert_node
 local d = ls.dynamic_node
@@ -31,19 +32,39 @@ return {
 	{ t("\\gamma") }
     ),
 
+    s({trig=";e", snippetType="autosnippet"},
+	{ t("\\epsilon") }
+    ),
+
+    s({trig=";d", snippetType="autosnippet"},
+	{ t("\\delta") }
+    ),
+
+    s({trig=";D", snippetType="autosnippet"},
+	{ t("\\Delta") }
+    ),
+
     s({trig="bb", wordTrig=false, snippetType="autosnippet"},
-	 fmta("\\mathbb{<>}<>", { i(1), i(0) }),
+	 fmta("\\mathbb{<>}", { i(1) }),
 	 { condition=math }
     ),
 
-    -- attempt at replicating VSCode's auto-item
-    s({trig="\n", snippetType="autosnippet"},
-	{ t("\\item ") }
+    s({trig="bm", dscr="bold math", snippetType="autosnippet"},
+	fmta("\\bm{<>}", { d(1, get_visual) }),
+	{ condition=math }
     ),
 
-    s({trig="bm", dscr="bold math", snippetType="autosnippet"},
-	fmta("\\bm{<>}<>", { d(1, get_visual), i(0) }),
-	{ condition=math }
-    )
+ --    s({trig="tb", snippetType="autosnippet"},
+	-- fmta("\\textbf{<>}", { d(1, get_visual) })
+ --    ),
+	--
+ --    s({trig="tt", snippetType="autosnippet"},
+	-- fmta("\\text{<>}", { d(1, get_visual) })
+ --    ),
+	--
+ --    s({trig="tit", snippetType="autosnippet"},
+	-- fmta("\\textit{<>}", { d(1, get_visual) })
+ --    ),
+
 
 }

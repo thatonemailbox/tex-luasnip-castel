@@ -83,7 +83,7 @@ return {
 	]],
 	{
 	  i(1),
-	  i(2),
+	  d(2, get_visual),
 	  rep(1),  -- this node repeats insert node i(1)
 	}
       ),
@@ -140,9 +140,9 @@ return {
     s({trig="enum", dscr="Enumerate", snippetType="autosnippet"},
 	fmta(
 	[[
-	    \begin{enumerate}
-		\item <>
-	    \end{enumerate}
+	\begin{enumerate}
+	    \item <>
+	\end{enumerate}
 	]],
 	{ i(1) }
 	),
@@ -152,9 +152,9 @@ return {
     s({trig="item", dscr="Itemize", snippetType="autosnippet"},
 	fmta(
 	[[
-	    \begin{itemize}
-		\item <>
-	    \end{itemize}
+	\begin{itemize}
+	    \item <>
+	\end{itemize}
 	]],
 	{ i(1) }
 	),
@@ -164,9 +164,9 @@ return {
     s({trig="desc", dscr="Description"},
 	fmta(
 	[[
-	    \begin{description}
-		\item[<>] <>
-	    \end{description}
+	\begin{description}
+	    \item[<>] <>
+	\end{description}
 	]],
 	{ i(1), i(2)}
 	),
@@ -333,13 +333,15 @@ return {
     ),
 
     s({trig="sum", dscr="sum", wordTrig=false, snippetType="autosnippet"},
-	fmta("\\sum_{n=<>}^{<>} <>",
+	fmta("\\sum_{<>=<>}^{<>} <>",
 	    {
-		i(1, "1"),
-		i(2, "\\infty"),
-		i(3, "a_n z^n")
+		i(1, "n"),
+		i(2, "1"),
+		i(3, "\\infty"),
+		i(4, "<exp>")
 	    }
-	)
+	),
+	{ condition=math }
     ),
 
     s({trig="taylor", dscr="taylor", wordTrig=false, snippetType="autosnippet"},
@@ -418,17 +420,17 @@ return {
 	{ t("\\infty") }
     ),
 
-    s({trig="rij", dscr="mij", wordTrig=true},
-	fmta("(<>_<>)_{<>\\in<>}<>",
-	    {
-		i(1, "x"),
-		i(2, "n"),
-		rep(2),
-		i(3, "\\N"),
-		i(0)
-	    }
-	)
-    ),
+ --    s({trig="rij", dscr="mij", wordTrig=true},
+	-- fmta("(<>_<>)_{<>\\in<>}<>",
+	--     {
+	-- 	i(1, "x"),
+	-- 	i(2, "n"),
+	-- 	rep(2),
+	-- 	i(3, "\\N"),
+	-- 	i(0)
+	--     }
+	-- )
+ --    ),
 
     s({trig="<=", dscr="leq", wordTrig=true, snippetType="autosnippet"},
 	{ t("\\le") }
@@ -488,9 +490,9 @@ return {
 	{ condition=math }
     ),
 
-    s({trig="R0+", dscr="R0+", wordTrig=true, snippetType="autosnippet"},
-	{ t("\\R_0^+") }
-    ),
+ --    s({trig="R0+", dscr="R0+", wordTrig=true, snippetType="autosnippet"},
+	-- { t("\\R_0^+") }
+ --    ),
 
     s({trig="plot", dscr="plot", wordTrig=false},
 	fmta([[
@@ -567,11 +569,12 @@ return {
     ),
 
     s({trig="dint", dscr="norm", worgTrig=false, snippetType="autosnippet"},
-	fmta("\\int_{<>}^{<>} <> <>",
+	fmta("\\int_{<>}^{<>} <> \\mathrm{d}<> <>",
 	{
 	    i(1, "-\\infty"),
 	    i(2, "\\infty"),
 	    d(3, get_visual),
+	    i(4, "x"),
 	    i(0)
 	}),
 	{ condition=math }
@@ -643,9 +646,9 @@ return {
 	{ t("\\in") }
     ),
 
-    s({trig="NN", dscr="n", wordTrig=false, snippetType="autosnippet"},
-	{ t("\\N") }
-    ),
+ --    s({trig="NN", dscr="n", wordTrig=false, snippetType="autosnippet"},
+	-- { t("\\N") }
+ --    ),
 
     s({trig="Nn", dscr="cap", wordTrig=false, snippetType="autosnippet"},
 	{ t("\\cap") }
@@ -671,21 +674,21 @@ return {
 	})
     ),
 
-    s({trig="OO", dscr="emptyset", wordTrig=true, snippetType="autosnippet"},
-	{ t("\\O") }
-    ),
+ --    s({trig="OO", dscr="emptyset", wordTrig=true, snippetType="autosnippet"},
+	-- { t("\\O") }
+ --    ),
 
-    s({trig="RR", dscr="real", wordTrig=true, snippetType="autosnippet"},
-	{ t("\\R") }
-    ),
-
-    s({trig="QQ", dscr="Q", wordTrig=true, snippetType="autosnippet"},
-	{ t("\\Q") }
-    ),
-
-    s({trig="ZZ", dscr="Z", wordTrig=true, snippetType="autosnippet"},
-	{ t("\\Z") }
-    ),
+ --    s({trig="RR", dscr="real", wordTrig=true, snippetType="autosnippet"},
+	-- { t("\\R") }
+ --    ),
+	--
+ --    s({trig="QQ", dscr="Q", wordTrig=true, snippetType="autosnippet"},
+	-- { t("\\Q") }
+ --    ),
+	--
+ --    s({trig="ZZ", dscr="Z", wordTrig=true, snippetType="autosnippet"},
+	-- { t("\\Z") }
+ --    ),
 
     s({trig="<!", dscr="normal", wordTrig=true, snippetType="autosnippet"},
 	{ t("\\triangleleft") }
@@ -763,11 +766,4 @@ return {
 	{ t("Let $\\Omega \\subset \\C$ be open.") }
     ),
 
-    s({trig="HH", dscr="H", wordTrig=true, snippetType="autosnippet"},
-	{ t("\\mathbb{H}") }
-    ),
-
-    s({trig="DD", dscr="D", wordTrig=true, snippetType="autosnippet"},
-	{ t("\\mathbb{D}") }
-    )
 }
